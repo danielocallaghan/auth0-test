@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   get 'welcome/index'
 
-  get "/auth/auth0/callback" => "callback#store"
+  get "callback" => "callback#store"
   get "/auth/failure" => "callback#failure"
 
 
