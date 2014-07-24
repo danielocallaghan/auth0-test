@@ -1,0 +1,27 @@
+<h1> Auth0 Test App </h2>
+<div id="root" style="width: 320px; margin: 40px auto; padding: 10px; border-style: dashed; border-width: 1px;">
+    embeded area
+</div>
+<script src="https://cdn.auth0.com/w2/auth0-widget-5.0.min.js"></script>
+<script>
+
+  var widget = new Auth0Widget({
+        domain:         'danielocallaghan.auth0.com',
+        clientID:       '3ZyDL30cZLJNYOiWNRtPzU0ajFd1eZ4B',
+        callbackURL:    'http://<%= request.host %>/auth/auth0/callback'
+  });
+
+
+  widget.signin({ container: 'root', chrome: true, scope: 'openid profile' });
+</script>
+
+<% if @user.present? %>
+  <div class="well clearfix">
+    <h2>UID</h2>
+    Hello <%= @user["info"]["name"] %>
+  </div>
+  <br>
+  <pre>
+    <%= JSON.pretty_generate(@user.to_hash) %>
+  </pre>
+<% end %>
